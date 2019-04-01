@@ -8,22 +8,38 @@ const htmlPlugin = new HtmlWebpackPlugin({
 
 module.exports = {
     mode: 'development',
+    entry: './src/index.js',
+    output:{
+    // 这里的name 是告诉我们入口进去的文件上是什么名字，打包出来也同样是什么名字
+      path:path.resolve(__dirname, 'dist'),
+      filename:'[name].js'
+    },
     module: {
         rules: [
             {
-                test: /\.js|.jsx$/,
+                test: /\.js|jsx$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader"
+                  loader: "babel-loader",
+                  options: {
+                    presets: ['es2015', 'react']
+                  }
                 }
             },
-            { test: /\.css$/, loader: "style-loader!css-loader"}
+            { test: /\.css$/, use: ["style-loader", "css-loader"]}
         ]
+    },
+    resolve: {
+      extensions: ['.js', '.jsx', '.json'],
+      alias: {
+        '@': path.join(__dirname, './src')  // 这样，@表示项目根目录中src的这一层路径
+      }
     },
     plugins: [
         htmlPlugin
     ],
     devServer: {
+        contentBase: path.resolve(__dirname, 'dist'),
         host: '127.0.0.1',
         port: 8888,
         hot: true,
