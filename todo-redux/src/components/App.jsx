@@ -15,6 +15,7 @@ class App extends React.Component {
     render() {
         return (
             <div id="App">
+                <h1>大家好</h1>
                 <Header></Header>
                 <Main></Main>
             </div>

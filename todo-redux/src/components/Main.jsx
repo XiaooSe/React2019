@@ -23,6 +23,7 @@ class Main extends React.Component {
     }
 
     render() {
+      console.log(this.props.dispatch)
         let filterTodos = (function() {
           if(this.state.filter === "全部显示") {
             return this.props.todos
@@ -63,4 +64,5 @@ const mapToDisPatch = (dispatch) => {
         "actions": bindActionCreators(actions, dispatch)
     }
 }
+//export default connect(mapToPropsState, mapToDisPatch)(Main);
 export default connect(mapToPropsState, mapToDisPatch)(Main);

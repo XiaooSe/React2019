@@ -12,6 +12,7 @@ module.exports = {
     output:{
     // 这里的name 是告诉我们入口进去的文件上是什么名字，打包出来也同样是什么名字
       path:path.resolve(__dirname, 'dist'),
+      publicPath: '/xuni',
       filename:'[name].js'
     },
     module: {
